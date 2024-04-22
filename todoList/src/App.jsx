@@ -2,7 +2,6 @@ import { TodoHeader } from './components/TodoHeader'
 import { TodoSearch } from './components/TodoSearch'
 import { TodoList } from './components/TodoList'
 import { TodoItem } from './components/TodoItem'
-import { CreateTodoButton } from './components/CreateTodoButton'
 
 function App() {
   return (
@@ -11,10 +10,16 @@ function App() {
       <TodoSearch />
 
       <TodoList>
+        <h3 className='text-[#6B6D93] font-bold'>Pendientes</h3>
         <TodoItem text="limpiar el cuarto" />
         <TodoItem text="Hacer memorandum" />
       </TodoList>
-      <CreateTodoButton />
+
+      <TodoList>
+        <h3 className='text-[#6B6D93] font-bold'>Completadas</h3>
+        <TodoItem text="limpiar el cuarto" completed />
+        <TodoItem text="Hacer memorandum" completed />
+      </TodoList>
     </main>
   )
 }

@@ -26,7 +26,7 @@ function TodoSearch(props) {
                 onChange={onChange}
             />
             <button
-                className="flex items-center justify-center absolute right-4 top-2.5 text-4xl font-bold bg-[#3A7EB2] text-white rounded-full w-9 h-9 pb-1 shadow-md"
+                className="flex items-center justify-center absolute right-4 top-2.5 text-4xl font-bold bg-[#3A7EB2] text-white rounded-full w-9 h-9 pb-1 shadow-md transition-colors"
                 onClick={onSubmit}
             >+</button>
         </form>
