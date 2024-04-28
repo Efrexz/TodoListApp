@@ -23,6 +23,7 @@ function TodoSearch({addNewTask}) {
             />
             <button
                 className="flex items-center justify-center absolute right-4 top-2.5 text-4xl font-bold bg-[#3A7EB2] text-white rounded-full w-9 h-9 pb-2 shadow-md transition-colors"
+                title="Agregar"
                 onClick={onSubmit}
             >+</button>
         </form>

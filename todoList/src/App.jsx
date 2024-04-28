@@ -2,15 +2,21 @@ import { TodoHeader } from './components/TodoHeader'
 import { TodoSearch } from './components/TodoSearch'
 import { TodoList } from './components/TodoList'
 import { TodoItem } from './components/TodoItem'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 function App() {
-  const taskListDemo = [
-    {text: "limpiear el cuarto", completed:false},
-    {text: "ir al gym", completed:true},
-    {text: "estudiar", completed:false},
-  ];
-  const [tasks, setTasks] = useState(taskListDemo);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    const taskListExists = localStorage.getItem("tasksList");
+    if(taskListExists){
+      const parseTasks = JSON.parse(taskListExists);
+      setTasks(parseTasks);
+    }else{
+      localStorage.setItem("tasksList", JSON.stringify([]));
+    }
+  }, [])
+
 
   function addNewTask(newTask){
     const tasksList = [...tasks];
@@ -19,7 +25,8 @@ function App() {
       tasksList.push(
         {text: newTask, completed:false}
       );
-      setTasks(tasksList)
+      localStorage.setItem("tasksList", JSON.stringify(tasksList));
+      setTasks(tasksList);
     }
   }
 
@@ -27,6 +34,7 @@ function App() {
     const tasksList = [...tasks];
     const taskIndex = tasks.findIndex((task) => task.text === text);
     tasksList[taskIndex].completed = !tasksList[taskIndex].completed;
+    localStorage.setItem("tasksList", JSON.stringify(tasksList));
     setTasks(tasksList);
   }
 
@@ -34,6 +42,7 @@ function App() {
     const tasksList = [...tasks];
     const taskIndex = tasks.findIndex((task) => task.text === text);
     tasksList.splice(taskIndex,1);
+    localStorage.setItem("tasksList", JSON.stringify(tasksList));
     setTasks(tasksList);
   }
 

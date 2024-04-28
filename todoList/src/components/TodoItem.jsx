@@ -1,5 +1,6 @@
 import { CheckButtonIcon } from "./CheckButtonIcon"
 import { DeleteButtonIcon } from "./DeleteButtonIcon"
+import { EditIcon } from "./EditIcon"
 
 function TodoItem({text,completed,checkTask, deleteTask}) {
 
@@ -21,9 +22,14 @@ function TodoItem({text,completed,checkTask, deleteTask}) {
                 </button>
                 <p className={completed ? "text-[#6C6C92] line-through" : "text-white"}>{text}</p>
             </div>
-            <span className="absolute right-[-12px] bottom-5 hover:cursor-pointer" onClick={deleteTask}>
-                <DeleteButtonIcon/>
-            </span>
+            <div className="flex items-center">
+                <span className="absolute right-8 hover:cursor-pointer" title="Editar">
+                    <EditIcon/>
+                </span>
+                <span className="absolute right-[-12px] bottom-6 hover:cursor-pointer" title="Eliminar" onClick={deleteTask}>
+                    <DeleteButtonIcon/>
+                </span>
+            </div>
         </li>
     )
 }
