@@ -1,8 +1,6 @@
-import { TodoHeader } from './components/TodoHeader'
-import { TodoSearch } from './components/TodoSearch'
-import { TodoList } from './components/TodoList'
-import { TodoItem } from './components/TodoItem'
+
 import { useEffect, useState } from 'react'
+import { AppUI } from './components/AppUI';
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -17,6 +15,10 @@ function App() {
     }
   }, [])
 
+    function updateTasks(updatedTask){
+      localStorage.setItem("tasksList", JSON.stringify(updatedTask));
+      setTasks(updatedTask);
+    }
 
   function addNewTask(newTask){
     const tasksList = [...tasks];
@@ -25,8 +27,7 @@ function App() {
       tasksList.push(
         {text: newTask, completed:false}
       );
-      localStorage.setItem("tasksList", JSON.stringify(tasksList));
-      setTasks(tasksList);
+      updateTasks(tasksList);
     }
   }
 
@@ -34,53 +35,27 @@ function App() {
     const tasksList = [...tasks];
     const taskIndex = tasks.findIndex((task) => task.text === text);
     tasksList[taskIndex].completed = !tasksList[taskIndex].completed;
-    localStorage.setItem("tasksList", JSON.stringify(tasksList));
-    setTasks(tasksList);
+    updateTasks(tasksList);
   }
 
   function deleteTask(text){
     const tasksList = [...tasks];
     const taskIndex = tasks.findIndex((task) => task.text === text);
     tasksList.splice(taskIndex,1);
-    localStorage.setItem("tasksList", JSON.stringify(tasksList));
-    setTasks(tasksList);
+    updateTasks(tasksList);
   }
 
   const unCompletedTasks = tasks.filter((task) => !task.completed);
   const completedTasks = tasks.filter((task) => task.completed);
 
   return (
-    <main className='w-full h-full px-6'>
-      <TodoHeader />
-      <TodoSearch addNewTask={addNewTask}/>
-
-      <TodoList>
-        <h3 className='text-[#6B6D93] font-bold'>Pendientes</h3>
-        {unCompletedTasks.map((task) => {
-          return (
-            <TodoItem
-              key={task.text}
-              text={task.text}
-              checkTask={() => checkTask(task.text)}
-              deleteTask={() => deleteTask(task.text)} />
-          )
-        })}
-      </TodoList>
-
-      <TodoList>
-        <h3 className='text-[#6B6D93] font-bold'>Completadas</h3>
-        {completedTasks.map((task) => {
-          return (
-            <TodoItem
-              key={task.text}
-              text={task.text}
-              checkTask={() => checkTask(task.text)}
-              deleteTask={() => deleteTask(task.text)}
-              completed />
-          )
-        })}
-      </TodoList>
-    </main>
+    <AppUI
+      unCompletedTasks ={unCompletedTasks}
+      completedTasks={completedTasks}
+      addNewTask={addNewTask}
+      checkTask={checkTask}
+      deleteTask={deleteTask}
+    />
   )
 }
 

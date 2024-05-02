@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { useState } from "react";
 
 function TodoSearch({addNewTask}) {
@@ -5,7 +6,9 @@ function TodoSearch({addNewTask}) {
 
     const onSubmit = (event) => {
         event.preventDefault();
-        addNewTask(todo);
+        if(todo.length >= 3){
+            addNewTask(todo);
+        }
     }
 
     const onChange = (event) => {
@@ -29,5 +32,9 @@ function TodoSearch({addNewTask}) {
         </form>
     )
 }
+
+TodoSearch.propTypes = {
+    addNewTask: PropTypes.func.isRequired
+};
 
 export { TodoSearch }

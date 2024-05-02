@@ -1,15 +1,9 @@
+import PropTypes from 'prop-types';
 import { CheckButtonIcon } from "./CheckButtonIcon"
 import { DeleteButtonIcon } from "./DeleteButtonIcon"
 import { EditIcon } from "./EditIcon"
 
 function TodoItem({text,completed,checkTask, deleteTask}) {
-
-    // function checkTask(){
-    //     const checkButton = document.querySelector("#checkButton");
-    //     checkButton.classList.toggle('text-green-500');
-    //     const svg = checkButton.querySelector('svg');
-    //     svg.classList.toggle('hidden');
-    // }
 
     return (
         <li key={text} className={`flex justify-between items-center relative border-1 rounded-md ${completed ? "bg-[#38375F]" : "bg-[#44446A]"}  p-3 my-4`}>
@@ -33,5 +27,12 @@ function TodoItem({text,completed,checkTask, deleteTask}) {
         </li>
     )
 }
+
+TodoItem.propTypes = {
+    text: PropTypes.string.isRequired,
+    completed: PropTypes.bool.isRequired,
+    checkTask: PropTypes.func.isRequired,
+    deleteTask: PropTypes.func.isRequired,
+};
 
 export { TodoItem }
