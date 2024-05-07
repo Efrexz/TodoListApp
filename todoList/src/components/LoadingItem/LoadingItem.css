@@ -1,0 +1,19 @@
+.loader{
+    background: #ccc;
+    opacity: 0.1;
+    animation: placeholder 1s linear infinite;
+    color: transparent;
+    border: none;
+}
+
+@keyframes placeholder {
+    0%{
+        background: #ccc;
+    }
+    50%{
+        background: #eee;
+    }
+    100%{
+        background: #ccc;
+    }
+}

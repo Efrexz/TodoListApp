@@ -18,7 +18,7 @@ function TodoItem({text,completed,checkTask, deleteTask}) {
             </div>
             <div className="flex items-center">
                 <span className="absolute right-8 hover:cursor-pointer" title="Editar">
-                    <EditIcon/>
+                    <EditIcon text={text}/>
                 </span>
                 <span className="absolute right-[-12px] bottom-6 hover:cursor-pointer" title="Eliminar" onClick={deleteTask}>
                     <DeleteButtonIcon/>

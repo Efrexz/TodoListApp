@@ -1,24 +1,15 @@
 
-import { useEffect, useState } from 'react'
-import { AppUI } from './components/AppUI';
+import { AppUI } from './AppUI';
+import { useLocalStorage } from './useLocalStorage';
 
 function App() {
-  const [tasks, setTasks] = useState([]);
 
-  useEffect(() => {
-    const taskListExists = localStorage.getItem("tasksList");
-    if(taskListExists){
-      const parseTasks = JSON.parse(taskListExists);
-      setTasks(parseTasks);
-    }else{
-      localStorage.setItem("tasksList", JSON.stringify([]));
-    }
-  }, [])
+  const {
+    tasks,
+    updateTasks,
+    loading
+  } = useLocalStorage();
 
-    function updateTasks(updatedTask){
-      localStorage.setItem("tasksList", JSON.stringify(updatedTask));
-      setTasks(updatedTask);
-    }
 
   function addNewTask(newTask){
     const tasksList = [...tasks];
@@ -50,6 +41,7 @@ function App() {
 
   return (
     <AppUI
+      loading={loading}
       unCompletedTasks ={unCompletedTasks}
       completedTasks={completedTasks}
       addNewTask={addNewTask}
