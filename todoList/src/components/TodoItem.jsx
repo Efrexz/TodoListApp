@@ -17,12 +17,12 @@ function TodoItem({text,completed,checkTask, deleteTask}) {
                 <p className={completed ? "text-[#6C6C92] line-through" : "text-white"}>{text}</p>
             </div>
             <div className="flex items-center">
-                <span className="absolute right-8 hover:cursor-pointer" title="Editar">
+                <button className="absolute right-8 hover:cursor-pointer" title="Editar">
                     <EditIcon text={text}/>
-                </span>
-                <span className="absolute right-[-12px] bottom-6 hover:cursor-pointer" title="Eliminar" onClick={deleteTask}>
+                </button>
+                <button className="absolute right-[-12px] bottom-6 hover:cursor-pointer" title="Eliminar" onClick={deleteTask}>
                     <DeleteButtonIcon/>
-                </span>
+                </button>
             </div>
         </li>
     )

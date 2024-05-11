@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function EditIcon({text}){
     return(
         <button>
@@ -10,5 +12,9 @@ function EditIcon({text}){
         </button>
     )
 }
+
+EditIcon.propTypes = {
+    text: PropTypes.string.isRequired
+};
 
 export {EditIcon};

@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 function CheckButtonIcon({completed}){
     return(
         <svg xmlns="http://www.w3.org/2000/svg" className={`w-4 h-4 ${completed ? "block fill-green-500" : "hidden"}`} viewBox="0 0 20 20">
@@ -5,5 +7,9 @@ function CheckButtonIcon({completed}){
         </svg>
     )
 }
+
+CheckButtonIcon.propTypes = {
+    completed: PropTypes.bool.isRequired,
+};
 
 export {CheckButtonIcon};

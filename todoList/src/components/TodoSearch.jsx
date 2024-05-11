@@ -1,7 +1,8 @@
-import PropTypes from 'prop-types';
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { TodoContext } from './TodoContext';
 
-function TodoSearch({addNewTask}) {
+function TodoSearch() {
+    const {addNewTask} = useContext(TodoContext);
     const [todo, setTodo] = useState("");
 
     const onSubmit = (event) => {
@@ -32,9 +33,5 @@ function TodoSearch({addNewTask}) {
         </form>
     )
 }
-
-TodoSearch.propTypes = {
-    addNewTask: PropTypes.func.isRequired
-};
 
 export { TodoSearch }
