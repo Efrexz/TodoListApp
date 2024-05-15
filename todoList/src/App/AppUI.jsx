@@ -5,6 +5,8 @@ import { TodoList } from '../components/TodoList'
 import { TodoItem } from '../components/TodoItem'
 import { LoadingItem } from '../components/LoadingItem';
 import { TodoContext } from '../components/TodoContext';
+import { Modal } from '../components/Modal';
+import { TodoForm } from '../components/TodoForm';
 
 
 function AppUI(){
@@ -14,6 +16,7 @@ function AppUI(){
         completedTasks,
         checkTask,
         deleteTask,
+        openModal,
     } = useContext(TodoContext);
 
     return (
@@ -59,6 +62,12 @@ function AppUI(){
                 )
                 })}
             </TodoList>
+
+            {openModal &&
+                <Modal>
+                    <TodoForm/>
+                </Modal>
+            }
         </main>
     )
 }

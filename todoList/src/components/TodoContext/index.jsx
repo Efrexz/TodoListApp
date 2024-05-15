@@ -1,16 +1,17 @@
 import PropTypes from 'prop-types';
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { useLocalStorage } from './useLocalStorage';
 
 const TodoContext = createContext();
 
 const TodoProvider = ({ children }) => {
+    const [openModal,setOpenModal] = useState(false);
+    const [valueToEdit, setValueToEdit] = useState(""); /*Valor de la tarea que aparezca al momento de undir en el boton de edit*/
     const {
         tasks,
         updateTasks,
         loading
     } = useLocalStorage();
-
 
     function addNewTask(newTask){
         const tasksList = [...tasks];
@@ -37,6 +38,14 @@ const TodoProvider = ({ children }) => {
         updateTasks(tasksList);
     }
 
+    function editTask(text,editedTask){
+        const tasksList = [...tasks];
+        const taskIndex = tasks.findIndex((task) => task.text === text);
+        const newEditedTask = {text: editedTask , completed:false}
+        tasksList.splice(taskIndex,1,newEditedTask);
+        updateTasks(tasksList);
+    }
+
     const unCompletedTasks = tasks.filter((task) => !task.completed);
     const completedTasks = tasks.filter((task) => task.completed);
 
@@ -49,6 +58,11 @@ const TodoProvider = ({ children }) => {
             addNewTask,
             checkTask,
             deleteTask,
+            openModal,
+            setOpenModal,
+            valueToEdit,
+            setValueToEdit,
+            editTask,
         }}>
             {children}
         </TodoContext.Provider>

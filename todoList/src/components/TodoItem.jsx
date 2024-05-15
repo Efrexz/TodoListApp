@@ -5,6 +5,7 @@ import { EditIcon } from "./EditIcon"
 
 function TodoItem({text,completed,checkTask, deleteTask}) {
 
+
     return (
         <li key={text} className={`flex justify-between items-center relative border-1 rounded-md ${completed ? "bg-[#38375F]" : "bg-[#44446A]"}  p-3 my-4`}>
             <div className="flex justify-around gap-3 items-center text-md">
@@ -17,9 +18,12 @@ function TodoItem({text,completed,checkTask, deleteTask}) {
                 <p className={completed ? "text-[#6C6C92] line-through" : "text-white"}>{text}</p>
             </div>
             <div className="flex items-center">
-                <button className="absolute right-8 hover:cursor-pointer" title="Editar">
-                    <EditIcon text={text}/>
-                </button>
+                {/*Si la tarea esta completa no se agrega el boton de editar */
+                    !completed &&
+                        <button className="absolute right-8 hover:cursor-pointer" title="Editar">
+                            <EditIcon text={text}/>
+                        </button>
+                }
                 <button className="absolute right-[-12px] bottom-6 hover:cursor-pointer" title="Eliminar" onClick={deleteTask}>
                     <DeleteButtonIcon/>
                 </button>

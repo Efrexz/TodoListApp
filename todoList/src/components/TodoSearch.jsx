@@ -9,6 +9,7 @@ function TodoSearch() {
         event.preventDefault();
         if(todo.length >= 3){
             addNewTask(todo);
+            setTodo("");
         }
     }
 
