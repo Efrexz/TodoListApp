@@ -37,5 +37,5 @@ To-Do List es una aplicación sencilla para la gestión de tareas diarias. Permi
 
 ## Contacto
 
-📩 **Email**: zyzz_448@hotmail.com
-💼 **Linkedin**: https://www.linkedin.com/in/efrain-andrade-b05142349/
+📩 **Email**: efrexz448@outlook.com  
+💼 **Linkedin**: https://www.linkedin.com/in/efrainandrade-dev/
