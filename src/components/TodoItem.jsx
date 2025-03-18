@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
 import { CheckButtonIcon } from "./CheckButtonIcon"
-import { DeleteButtonIcon } from "./DeleteButtonIcon"
+import DeleteButtonIcon from "@assets/deleteButton.svg?react"
 import { EditIcon } from "./EditIcon"
 
 function TodoItem({ text, completed, checkTask, deleteTask }) {
-
 
     return (
         <li key={text} className={`flex justify-between items-center relative border-1 rounded-md ${completed ? "bg-[#38375F]" : "bg-[#44446A]"}  p-3 my-4`}>

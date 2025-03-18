@@ -3,34 +3,34 @@ import { TodoContext } from "./TodoContext";
 
 
 function TodoForm() {
-    const { setOpenModal, valueToEdit, editTask} = useContext(TodoContext);
+    const { setOpenModal, valueToEdit, editTask } = useContext(TodoContext);
 
     /*Recibimos como valor inicial el estado del texto de la tarea a editar y este aparezca al momento de abrir el formulario de la tarea a editar*/
     const [newTaskValue, setNewTaskValue] = useState(valueToEdit);
 
-    const onSubmit = (event) => {
+    function onSubmit(event) {
         event.preventDefault();
-        editTask(valueToEdit,newTaskValue);
+        editTask(valueToEdit, newTaskValue);
+        setOpenModal(false);
+    }
+
+    function onCancel() {
         setOpenModal(false);
     };
 
-    const onCancel = () => {
-        setOpenModal(false);
-    };
-
-    const onChange = (event) => {
+    function onChange(event) {
         setNewTaskValue(event.target.value);
     };
 
 
     return (
-        <form onSubmit={onSubmit} className="flex justify-center items-center flex-col w-full max-w-[470px] py-8 px-10 bg-[#32315B] rounded-lg shadow-lg">
+        <form onSubmit={onSubmit} className="flex justify-center items-center flex-col w-full max-w-[470px] py-8 px-10 bg-[#32315B] rounded-lg shadow-lg mx-4">
             <label className="text-center font-bold text-lg text-white mb-6">Edita tu tarea</label>
             <textarea
                 value={newTaskValue}
                 onChange={onChange}
                 required
-                className="bg-[#292850] border-2 border-blue-400 rounded-md shadow-md text-white text-md text-center py-3 px-3 w-full h-[96px] mb-6"
+                className="bg-[#292850] border-2 border-blue-400 rounded-md shadow-md text-white text-md text-left py-3 px-3 w-full h-[96px] mb-6 max-h-[400px]"
             />
 
             <div className="flex justify-between w-full">
