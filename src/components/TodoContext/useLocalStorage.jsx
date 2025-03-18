@@ -36,6 +36,7 @@ function useLocalStorage() {
                     setLoading(false);
                 } else {
                     localStorage.setItem("tasksList", JSON.stringify(defaultValue));
+                    setTasks(defaultValue);
                     setLoading(false);
                 }
             } catch (error) {
