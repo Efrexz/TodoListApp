@@ -6,7 +6,7 @@ import { EditIcon } from "./EditIcon"
 function TodoItem({ text, completed, checkTask, deleteTask }) {
 
     return (
-        <li key={text} className={`flex justify-between items-center relative border-1 rounded-md ${completed ? "bg-[#38375F]" : "bg-[#44446A]"}  p-3 my-4`}>
+        <li key={text} className={`flex justify-between items-center relative border-1 rounded-md ${completed ? "bg-[#38375F]" : "bg-[#44446A]"}  p-3 my-4 `}>
             <div className="flex justify-around gap-3 items-center text-md">
                 <button
                     onClick={checkTask}
@@ -14,7 +14,7 @@ function TodoItem({ text, completed, checkTask, deleteTask }) {
                 >
                     <CheckButtonIcon completed={completed} />
                 </button>
-                <p className={completed ? "text-[#6C6C92] line-through" : "text-white"}>{text}</p>
+                <p className={`${completed ? "text-[#6C6C92] line-through" : "text-white"} break-words`}>{text}</p>
             </div>
             <div className="flex items-center">
                 {/*Si la tarea esta completa no se agrega el boton de editar */

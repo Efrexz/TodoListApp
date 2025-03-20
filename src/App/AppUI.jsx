@@ -7,6 +7,7 @@ import { LoadingItem } from '@components/LoadingItem';
 import { TodoContext } from '@components/TodoContext';
 import { Modal } from '@components/Modal';
 import { TodoForm } from '@components/TodoForm';
+import ClipBoardIcon from '@assets/clipBoard.svg?react';
 
 
 function AppUI() {
@@ -25,50 +26,66 @@ function AppUI() {
             <TodoSearch />
 
             <TodoList>
-                <h3 className='text-[#6B6D93] font-bold'>Pendientes</h3>
-                {loading && <div>
-                    <LoadingItem />
-                    <LoadingItem />
-                    <LoadingItem />
-                </div>}
-                {unCompletedTasks.map((task) => {
-                    return (
-                        <TodoItem
-                            key={task.text}
-                            text={task.text}
-                            checkTask={() => checkTask(task.text)}
-                            deleteTask={() => deleteTask(task.text)}
-                            completed={false} />
-                    )
-                })}
-            </TodoList>
-
-            <TodoList>
-                <h3 className='text-[#6B6D93] font-bold'>Completadas</h3>
-                {loading &&
+                <h3 className='text-[#6B6D93] font-bold mb-6'>Pendientes</h3>
+                {loading ? (
                     <div>
                         <LoadingItem />
                         <LoadingItem />
                         <LoadingItem />
-                    </div>}
-                {completedTasks.map((task) => {
-                    return (
+                    </div>
+                ) : unCompletedTasks.length === 0 ? (
+                    <div className='flex flex-col items-center justify-center'>
+                        <div className="w-16 h-16 mb-6 rounded-full bg-gray-500 flex items-center justify-center">
+                            <ClipBoardIcon className="w-10 h-10 text-white" />
+                        </div>
+
+                        <h3 className="text-xl font-semibold mb-2 text-gray-400">Añade tu primera tarea</h3>
+                        <p className=" mb-6 text-gray-400">
+                            Aún no tienes tareas pendientes. ¡Crea una nueva ahora! 🚀
+                        </p>
+                    </div>
+                ) : (
+                    unCompletedTasks.map((task) => (
                         <TodoItem
                             key={task.text}
                             text={task.text}
                             checkTask={() => checkTask(task.text)}
                             deleteTask={() => deleteTask(task.text)}
-                            completed />
-                    )
-                })}
+                            completed={false}
+                        />
+                    ))
+                )}
             </TodoList>
 
-            {openModal &&
+            <TodoList>
+                <h3 className='text-[#6B6D93] font-bold mb-6'>Completadas</h3>
+                {loading ? (
+                    <div>
+                        <LoadingItem />
+                        <LoadingItem />
+                        <LoadingItem />
+                    </div>
+                ) : completedTasks.length === 0 ? (
+                    <p className="text-gray-400 text-center mt-2">Aún no has completado ninguna tarea.</p>
+                ) : (
+                    completedTasks.map((task) => (
+                        <TodoItem
+                            key={task.text}
+                            text={task.text}
+                            checkTask={() => checkTask(task.text)}
+                            deleteTask={() => deleteTask(task.text)}
+                            completed
+                        />
+                    ))
+                )}
+            </TodoList>
+
+            {openModal && (
                 <Modal>
                     <TodoForm />
                 </Modal>
-            }
+            )}
         </main>
-    )
+    );
 }
 export { AppUI };
